@@ -2,12 +2,13 @@ const createFragmentNode = (function() {
 	"use strict";
 
 	function createFragmentNode() {
-        // we can either use a comment or a text node?
-        // we just need something that is not an element (affects styling and has issues with tables)
-        // we cannot use docFrags as they do not actually get inserted into the DOM tree
+		// we can either use a comment or a text node?
+		// we just need something that is not an element (affects styling and has issues with tables)
+		// we cannot use docFrags as they do not actually get inserted into the DOM tree
 		const base = document.createTextNode('');
 		const childNodes = [];
 		let lastParent;
+		let lastNextSibling;
 
 		// as TextNodes do not have appendChild (as they don't have children), we make one
 		base.appendChild = node => {
@@ -15,7 +16,7 @@ const createFragmentNode = (function() {
 			const parentNode = base.parentNode;
 
 			if (parentNode) {
-				parentNode.appendChild(node);
+				parentNode.insertBefore(node, base);
 			}
 		};
 
@@ -46,6 +47,8 @@ const createFragmentNode = (function() {
 		// then move our children
 		const observer = new MutationObserver(() => {
 			const parentNode = base.parentNode;
+			const nextSibling = base.nextSibling;
+			let hasMoved = false;
 
 			if (parentNode !== lastParent) {
 				if (!parentNode) {
@@ -53,13 +56,21 @@ const createFragmentNode = (function() {
 					for (let i = 0; i < childNodes.length; i++) {
 						lastParent.removeChild(childNodes[i]);
 					}
-				} else {
-					// when our fragment has been moved/attached, we need to also attach our children
-					for (let i = 0; i < childNodes.length; i++) {
-						parentNode.appendChild(childNodes[i]);
-					}
+					lastParent = parentNode;
+					return;
 				}
 				lastParent = parentNode;
+				lastNextSibling = base.lastNextSibling;
+				hasMoved = true;
+			} else if (lastNextSibling !== nextSibling) {
+				lastNextSibling = base.lastNextSibling;
+				hasMoved = true;
+			}
+			if (hasMoved) {
+				// when our fragment has been moved/attached, we need to also attach our children
+				for (let i = 0; i < childNodes.length; i++) {
+					parentNode.insertBefore(childNodes[i], base);
+				}
 			}
 		});
 
