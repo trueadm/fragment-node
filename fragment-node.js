@@ -60,10 +60,10 @@ const createFragmentNode = (function() {
 					return;
 				}
 				lastParent = parentNode;
-				lastNextSibling = base.lastNextSibling;
+				lastNextSibling = nextSibling;
 				hasMoved = true;
 			} else if (lastNextSibling !== nextSibling) {
-				lastNextSibling = base.lastNextSibling;
+				lastNextSibling = nextSibling;
 				hasMoved = true;
 			}
 			if (hasMoved) {
