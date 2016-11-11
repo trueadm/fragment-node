@@ -15,7 +15,6 @@
 
         // 1: create a div, with some text and append it to our fragment
         const div = document.createElement('div');
-
         div.textContent = 'I am a DIV';
         fragment.appendChild(div);
 
@@ -23,6 +22,14 @@
         container.appendChild(fragment);
 
         // 3: now append our fragment to container2, it should not be in container1
+        container2.appendChild(fragment);
+
+        // 4: create a div, with some text and append it to container2
+        const div2 = document.createElement('div');
+        div2.textContent = 'I am a 2nd DIV';
+        container2.appendChild(div2);
+
+        // 5: move the fragment to the end of container2
         container2.appendChild(fragment);
     </script>
 </body>
