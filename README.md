@@ -20,7 +20,7 @@ const Rows = () => [
 const Table = () => (
     <table>
         <Rows />
-    <table>
+    </table>
 );
 ```
 
