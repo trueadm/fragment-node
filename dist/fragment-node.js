@@ -53,6 +53,7 @@ function createFragmentNode() {
 
 	// we need to know if our base node gets mutated around the DOM, if it does, we need to
 	// then move our children
+	// TODO pull this out of here and make it work for all instances of FragmentNodes
 	var observer = new MutationObserver(function () {
 		var parentNode = base.parentNode;
 		var nextSibling = base.nextSibling;

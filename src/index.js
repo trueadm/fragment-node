@@ -1,4 +1,4 @@
-function createFragmentNode() {
+export function createFragmentNode() {
 	// we can either use a comment or a text node?
 	// we just need something that is not an element (affects styling and has issues with tables)
 	// we cannot use docFrags as they do not actually get inserted into the DOM tree
