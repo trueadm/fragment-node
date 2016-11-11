@@ -1,0 +1,36 @@
+{
+  "name": "fragment-node",
+  "version": "0.0.1",
+  "description": "a utility library that creates DocumentFragmentNodes",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run build:dev && npm run build:prod",
+    "build:dev": "cross-env NODE_ENV=development node rollup.config.js",
+    "build:prod": "cross-env NODE_ENV=production node rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trueadm/fragment-node.git"
+  },
+  "keywords": [
+    "fragment",
+    "vdom",
+    "document",
+    "dom"
+  ],
+  "author": "Dominic Gannaway",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trueadm/fragment-node/issues"
+  },
+  "homepage": "https://github.com/trueadm/fragment-node#readme",
+  "devDependencies": {
+    "cross-env": "^3.1.3",
+    "rollup": "^0.36.3",
+    "rollup-plugin-buble": "^0.14.0",
+    "rollup-plugin-filesize": "^1.0.1",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-uglify": "^1.0.1"
+  }
+}
