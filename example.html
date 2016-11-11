@@ -7,11 +7,11 @@
 <body>
 	<div id="container1"></div>
     <div id="container2"></div>
-    <script src="fragment-node.js"></script>
+    <script src="dist/fragment-node.js"></script>
     <script>
     	const container = document.getElementById('container1');
         const container2 = document.getElementById('container2');
-        const fragment = createFragmentNode();
+        const fragment = FragmentNode.createFragmentNode();
 
         // 1: create a div, with some text and append it to our fragment
         const div = document.createElement('div');

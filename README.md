@@ -7,8 +7,8 @@ that exists in the DOM tree rather than as an abstraction. By having such a node
 easily using the existing DOM API whilst ensuring `childNodes` on the fragment remain. `DocumentFragment`s lose their
 `childNodes` once the `DocumentFragment` is appended to another node.
 
-The core reasoning behind this experiment is to see if React or Inferno can use `fragment-node` to describe common problems
-that affect virtual DOM node trees. Such problems include:
+The core reasoning behind this experiment is to see if [React](https://github.com/facebook/react) or [Inferno](https://github.com/trueadm/inferno) 
+can use `fragment-node` to describe common problems that affect virtual DOM node trees. Such problems include:
 
 ```jsx
 const Rows = () => [
@@ -36,5 +36,5 @@ rethink how the `<Table /> and `<Rows />` components work.
 `fragment-node` attempts to deal with this problem by providing an alternative to `DocumentFragment` that works
 like a typical DOM node, in that it actually gets inserted into the DOM tree and its `childNodes` remain with it.
 
-It does this by using a placeholder base node (in this implementation it uses an empty `TextNode`). It then uses
+It does this by using a placeholder base node (in this implementation it uses an empty `CommentNode`). It then uses
 `defineProperty` and `MutationObserver`s to proxy in features and API methods that you'd typically use on a `DocumentFragment`.

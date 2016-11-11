@@ -13,7 +13,7 @@ function createFragmentNode() {
 	// we can either use a comment or a text node?
 	// we just need something that is not an element (affects styling and has issues with tables)
 	// we cannot use docFrags as they do not actually get inserted into the DOM tree
-	var base = document.createTextNode('');
+	var base = document.createComment('');
 	var childNodes = [];
 	var lastParent;
 	var lastNextSibling;
@@ -122,6 +122,10 @@ function createFragmentNode() {
 	return base;
 }
 
-return createFragmentNode;
+var index = {
+	createFragmentNode: createFragmentNode
+};
+
+return index;
 
 })));
